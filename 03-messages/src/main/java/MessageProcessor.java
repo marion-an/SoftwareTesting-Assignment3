@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageProcessor {
@@ -8,9 +9,13 @@ public class MessageProcessor {
         this.messageService = messageService;
     }
 
-    public void processMessages(List<Message> messages) {
+    public List<Message> processMessages(List<Message> messages) {
+        List<Message> sent = new ArrayList<>();
         for (Message message : messages) {
             messageService.sendMessage(message.getReceiver(), message.getContent());
+            sent.add(message);
         }
+        return sent;
     }
+
 }

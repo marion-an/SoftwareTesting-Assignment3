@@ -20,7 +20,7 @@ class MessageProcessorTest {
     MessageService messageService;
 
     @Test
-    void numberOfInvocation() {
+    void numberOfInvocationA() {
         MessageProcessor messageProcessor = new MessageProcessor(messageService);
 
         Message message = new Message("sender", "receiver", "content");
@@ -40,7 +40,7 @@ class MessageProcessorTest {
     }
 
     @Test
-    void noInvocation() {
+    void noInvocationA() {
         MessageProcessor messageProcessor = new MessageProcessor(messageService);
 
         List<Message> messages = new ArrayList<>();
@@ -51,7 +51,7 @@ class MessageProcessorTest {
     }
 
     @Test
-    void oneInvocation() {
+    void oneInvocationA() {
         MessageProcessor messageProcessor = new MessageProcessor(messageService);
 
         Message message = new Message("sender", "receiver", "content");
@@ -67,7 +67,7 @@ class MessageProcessorTest {
     }
 
     @Test
-    void multipleInvocation() {
+    void multipleInvocationA() {
         MessageProcessor messageProcessor = new MessageProcessor(messageService);
 
         Message message = new Message("sender", "receiver", "content");
@@ -83,7 +83,7 @@ class MessageProcessorTest {
     }
 
     @Test
-    void rightContent() {
+    void rightContentB() {
         MessageProcessor messageProcessor = new MessageProcessor(messageService);
 
         Message message = new Message("sender", "receiver", "content");
@@ -108,7 +108,7 @@ class MessageProcessorTest {
     }
 
     @Test
-    void nullContent() {
+    void nullContentB() {
         MessageProcessor messageProcessor = new MessageProcessor(messageService);
 
         Message message = new Message("sender", null, null);
@@ -133,7 +133,7 @@ class MessageProcessorTest {
     }
 
     @Test
-    void rightContentMultipleInvocation() {
+    void rightContentMultipleInvocationB() {
         MessageProcessor messageProcessor = new MessageProcessor(messageService);
 
         Message message = new Message("sender", "Ronald", "software");
@@ -169,4 +169,80 @@ class MessageProcessorTest {
         assertEquals("Testing", contents.get(4));
     }
 
+
+    @Test
+    void rightContentC() {
+        MessageProcessor messageProcessor = new MessageProcessor(messageService);
+
+        Message message = new Message("sender", "receiver", "content");
+
+        List<Message> messages = Arrays.asList(message);
+
+        doNothing().when(messageService).sendMessage(anyString(), anyString());
+
+        List<Message> sent = messageProcessor.processMessages(messages);
+
+        assertEquals(1, sent.size());
+        assertEquals("receiver", sent.get(0).getReceiver());
+        assertEquals("content", sent.get(0).getContent());
+
+    }
+
+    @Test
+    void nullContentC() {
+        MessageProcessor messageProcessor = new MessageProcessor(messageService);
+
+        Message message = new Message("sender", null, null);
+
+        List<Message> messages = Arrays.asList(message);
+
+        doNothing().when(messageService).sendMessage(null, null);
+
+        List<Message> sent = messageProcessor.processMessages(messages);
+
+        assertEquals(1, sent.size());
+        assertEquals(null, sent.get(0).getReceiver());
+        assertEquals(null, sent.get(0).getContent());
+    }
+
+    @Test
+    void rightContentMultipleInvocationC() {
+        MessageProcessor messageProcessor = new MessageProcessor(messageService);
+
+        Message message = new Message("sender", "Ronald", "software");
+        Message message2 = new Message("sender2", "Robert", "Testing");
+        Message message3 = new Message("sender3", "Ruedi", "Module FS24");
+
+
+        List<Message> messages = Arrays.asList(message, message2, message3, message3, message2);
+
+        doNothing().when(messageService).sendMessage(anyString(), anyString());
+
+        List<Message> sent = messageProcessor.processMessages(messages);
+
+        assertEquals(5, sent.size());
+
+        assertEquals("Ronald", sent.get(0).getReceiver());
+        assertEquals("Robert", sent.get(1).getReceiver());
+        assertEquals("Ruedi", sent.get(2).getReceiver());
+        assertEquals("Ruedi", sent.get(3).getReceiver());
+        assertEquals("Robert", sent.get(4).getReceiver());
+
+        assertEquals("software", sent.get(0).getContent());
+        assertEquals("Testing", sent.get(1).getContent());
+        assertEquals("Module FS24", sent.get(2).getContent());
+        assertEquals("Module FS24", sent.get(3).getContent());
+        assertEquals("Testing", sent.get(4).getContent());
+    }
+
+    @Test
+    void emptyReturnC() {
+        MessageProcessor messageProcessor = new MessageProcessor(messageService);
+
+        List<Message> messages = new ArrayList<>();
+
+        List<Message> sent = messageProcessor.processMessages(messages);
+
+        assertEquals(0, sent.size());
+    }
 }

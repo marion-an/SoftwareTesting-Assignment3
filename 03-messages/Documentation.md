@@ -20,3 +20,15 @@
 - T5: one message is sent, where the content is verified
 - T6: ``Message`` to be sent has ``null`` as receiver and content
 - T7: multiple messages are sent, where the content is verified
+
+
+## C. Content of invocations—Increasing observability
+- T8: one message is sent, where the content is verified
+- T9: ``Message`` to be sent has ``null`` as receiver and content
+- T10: multiple messages are sent, where the content is verified
+- T11: ``messages`` is empty
+
+
+
+TODO: screenshots!!!!!!!!!!!!!!!!
+ -> return something
