@@ -32,15 +32,13 @@
 
 ### Advantages 
 
-| ArgumentCaptor | Increase Observability |
-|----------------|------------------------| 
-|       |           |
-|        |          |
+| ArgumentCaptor                                                                                                             | Increase Observability |
+|----------------------------------------------------------------------------------------------------------------------------|------------------| 
+| Verfify which arguments are passsed to ``sendMessage(String receiver, String message)`` without needing to change the code | Increases testability |
+| Increases understandability as arguments expected are explictly stated in the test                                         |                  |
 
 
 ### Disadvantages
-
-
-
-TODO: screenshots!!!!!!!!!!!!!!!!
- -> return something
+| ArgumentCaptor | Increase Observability             |
+|----------------|------------------------------------| 
+| Requires setup | Production code has to be modified |
