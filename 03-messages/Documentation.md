@@ -28,6 +28,18 @@
 - T10: multiple messages are sent, where the content is verified
 - T11: ``messages`` is empty
 
+## D. Comparison
+
+### Advantages 
+
+| ArgumentCaptor | Increase Observability |
+|----------------|------------------------| 
+|       |           |
+|        |          |
+
+
+### Disadvantages
+
 
 
 TODO: screenshots!!!!!!!!!!!!!!!!
