@@ -15,7 +15,9 @@
 
 ## B. Content of invocations - ``ArgumentCaptor``
 
-- 
+- T4: one order is placed, where the content is verified
+- T5: ``Order`` to be placed is ``null``
+- T6: one order is placed and there are multiple listeners, where the content is verified
 
 
 ## C. Content of invocations—Increasing observability
