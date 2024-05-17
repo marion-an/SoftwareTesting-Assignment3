@@ -19,9 +19,13 @@
 - T5: ``Order`` to be placed is ``null``
 - T6: one order is placed and there are multiple listeners, where the content is verified
 
+--> no listener
 
 ## C. Content of invocations—Increasing observability
-- 
+- T7: one order is placed, where the content of the order is verified
+- T8: ``Order`` to be published is ``null``
+- T9: multiple ``listeners`` where the order content is verified
+- T10: no ``listeners`` are present, verify that no order is placed
 
 ## D. Comparison
 

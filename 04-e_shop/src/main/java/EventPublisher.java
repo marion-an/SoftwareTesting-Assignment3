@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventPublisher {
@@ -12,9 +13,12 @@ public class EventPublisher {
         listeners.add(listener);
     }
 
-    public void publishOrderToAllListeners(Order order) {
+    public List<Order> publishOrderToAllListeners(Order order) {
+        List<Order> published = new ArrayList<>();
         for (EventListener listener : listeners) {
             listener.onOrderPlaced(order);
+            published.add(order);
         }
+        return published;
     }
 }
