@@ -3,7 +3,7 @@
 ## A. Number of invocation
 
 - In the book it's stated that entities should not be mocked. Therefore, the ``Order`` objects are instantiated.
-- The implementation of the ``e-shop`` follows the Hexagonal Architecture. Therefore, the ``EventPublisher`` does not depend on low-level modules, instead it depends on an abstraction, the ``EventListener``. The ``EventListener`` is a port and both the ``InventoryManager`` and the ``ÈmailNotificationService`` are adapters.
+- The implementation of the ``e-shop`` follows the Hexagonal Architecture. Therefore, the ``EventPublisher`` does not depend on low-level modules, instead it depends on an abstraction, the ``EventListener``. The ``EventListener`` is a port and both the ``InventoryManager`` and the ``EmailNotificationService`` are adapters.
 - In order to mock the ``EventListener listeners`` a constructor is added to the class where this dependency will get injected.
 - 
     - T1: test to verify that ``listener.onOrderPlaced(order)`` gets called the right number of times
