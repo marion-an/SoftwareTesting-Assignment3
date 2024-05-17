@@ -16,13 +16,14 @@
     - T4: ``messages`` contains the same ``Message`` object multiple times
 
 ## B. Content of invocations - ``ArgumentCaptor``
-
+The content of ``Message`` objects which are passed to ``sendMessage(String receiver, String message)``is verified by using an argumentCaptor
 - T5: one message is sent, where the content is verified
 - T6: ``Message`` to be sent has ``null`` as receiver and content
 - T7: multiple messages are sent, where the content is verified
 
 
 ## C. Content of invocations—Increasing observability
+The content of ``Message`` objects which are passed to ``sendMessage(String receiver, String message)``is verified by adding the ``Message`` objects to a list which is returned
 - T8: one message is sent, where the content is verified
 - T9: ``Message`` to be sent has ``null`` as receiver and content
 - T10: multiple messages are sent, where the content is verified
@@ -30,15 +31,19 @@
 
 ## D. Comparison
 
-### Advantages 
+### ArgumentCaptor
+#### Advantages
+- Verify which arguments are passed to ``sendMessage(String receiver, String message)`` without needing to change the source code
+- Increases understandability as arguments expected are explicitly stated in the test
 
-| ArgumentCaptor                                                                                                             | Increase Observability |
-|----------------------------------------------------------------------------------------------------------------------------|------------------| 
-| Verfify which arguments are passsed to ``sendMessage(String receiver, String message)`` without needing to change the code | Increases testability |
-| Increases understandability as arguments expected are explictly stated in the test                                         |                  |
+#### Disadvantages
+- Requires setup
 
+### Increase Observability
+##### Advantages
+- Makes it easier to assert the behaviour of ``sendMessage(String receiver, String message)``
+- Increases testability
 
-### Disadvantages
-| ArgumentCaptor | Increase Observability             |
-|----------------|------------------------------------| 
-| Requires setup | Production code has to be modified |
+##### Disadvantages
+- Production code has to be modified
+
