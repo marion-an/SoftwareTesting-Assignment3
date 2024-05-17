@@ -2,17 +2,25 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 public class BookManager {
-    public List<Book> highRatedBooks() {
-        DatabaseConnection dbConnection = new DatabaseConnection();
-        BookRatingsFetcher fetcher = new BookRatingsFetcher(dbConnection);
 
-        try {
-            List<Book> allBooks = fetcher.all();
-            return allBooks.stream()
-                    .filter(book -> book.getRating() >= 4)
-                    .collect(toList());
-        } finally {
-            fetcher.close();
-        }
+    private final BookRatingsFetcher ratingsFetcher;
+    private final BookAuthorsFetcher authorsFetcher;
+
+    public BookManager(BookRatingsFetcher ratingsFetcher, BookAuthorsFetcher authorsFetcher) {
+        this.ratingsFetcher = ratingsFetcher;
+        this.authorsFetcher = authorsFetcher; }
+
+    public List<Book> highRatedBooks() {
+        List<Book> allBooks = ratingsFetcher.all();
+        return allBooks.stream()
+                .filter(book -> book.getRating() >= 4)
+                .collect(toList());
+    }
+
+    public List<String> uniqueAuthors() {
+        List<String> allAuthors  = authorsFetcher.all();
+        return allAuthors.stream()
+                .distinct()
+                .collect(toList());
     }
 }
