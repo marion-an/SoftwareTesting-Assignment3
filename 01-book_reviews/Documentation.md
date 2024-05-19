@@ -16,7 +16,7 @@ We test the following cases in `HighRatedBooksTest`:
 - T3: There is only high rated books
 - T4: There are mixed value rated books
 
-1. What are the external dependencies? Which of these dependencies should be tested using doubles and which should not? Explain your rationale.
+  1. What are the external dependencies? Which of these dependencies should be tested using doubles and which should not? Explain your rationale.
 
 We have 3 external dependencies:
 

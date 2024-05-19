@@ -11,19 +11,15 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
-public class HttpUtil {
+public class HttpUtil implements HttpFetcher {
 
-    public static String get(String url) throws IOException {
+    @Override
+    public String get(String url) throws IOException {
         CloseableHttpClient client = HttpClients.createDefault();
         HttpGet request = new HttpGet(url);
-        CloseableHttpResponse response = client.execute(request);
-        try {
+        try (CloseableHttpResponse response = client.execute(request)) {
             HttpEntity entity = response.getEntity();
             return EntityUtils.toString(entity);
-        } finally {
-            response.close();
         }
     }
-
-
 }
