@@ -32,6 +32,7 @@ By adding getter methods to the `PaymentProcessor` class the observability can b
     - Can be setup quickly
   - Disadvantages
     - coupling to production code
+    - readability of code decreases
 - C
   - Advantages
     - can improve overall design
