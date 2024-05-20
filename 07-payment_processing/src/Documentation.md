@@ -1,4 +1,4 @@
-# Payment Processing
+# 07 Payment Processing
 
 ## Event Publisher
 the `EventPublisher` class lets `AuditService` subscribe, so they can get Informatin sent to them. The Information is about transactions, once they are validated and processed they get loged. It does this by uing the `publishTransactionComplete` method. Furthermore a getter and setter for listeners was added to enhance testability.  
